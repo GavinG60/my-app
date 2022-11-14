@@ -14,12 +14,6 @@ function App() {
           <p>Filters</p>
         </div>
 
-        <div className="refresh">
-          <a href="#">
-            <img src="refresh.jpg" alt="refresh image"></img>
-          </a>
-        </div>
-
         <div className="Change-components">
           <a href="#" id="button1">Add/Remove Components</a>
         </div>
@@ -43,6 +37,12 @@ function App() {
             <option value="Chinese">Chinese</option>
             <option value="Other">Other</option>
           </select>
+        </div>
+
+        <div className="refresh">
+          <a href="#">
+            <img src="refresh.png" alt="refresh image" id="refresh-pic"></img>
+          </a>
         </div>
 
       </div>

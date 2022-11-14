@@ -1,0 +1,27 @@
+.Card {
+    background-color: gray;
+    height: 500px;
+    border: 10px solid lightgray;
+}
+
+.Card h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: black;
+}
+
+.Card h2 {
+    font-size: 23px;
+    color: black;
+}
+
+.Card p {
+    font-size: 16px;
+    color: white;
+}
+
+#Pluscard {
+    background-color: gray;
+    height: 500px;
+    border: 10px solid lightgray;
+}

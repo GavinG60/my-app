@@ -1,7 +1,7 @@
 import Cardgrid from './Cardgrid.js';
 import './AppBody.css';
 
-const AppBody = () => {
+const AppBody = (props) => {
     return (
         <div className="App-body">
 

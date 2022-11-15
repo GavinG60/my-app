@@ -7,6 +7,8 @@ import { NewCardForm } from './extraComponents/Gallery';
 function App() {
   return (
     // Test Comment
+    
+
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppHeader />}>

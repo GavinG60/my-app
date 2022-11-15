@@ -1,5 +1,7 @@
 import './Gallery.css';
 import ReactDOM from "react-dom/client";
+import {createRoot} from "react-dom/client";
+import React from 'react';
 
 function Card(props) {
     return (
@@ -15,29 +17,27 @@ function Card(props) {
     )
 }
 
-function PlusCard() {
-    function buttonPressed() {
-        //alert('Plus!');
-        let thisbutton = document.getElementById('Pluscard');
-        //thisbutton.removeChild(thisbutton.firstChild);
-        const heading = (<h1>XD</h1>);
-        //thisbutton.props.children.add(heading);
-        //let newdiv = document.createElement("p");
-        //newdiv.append("XD");
-        //thisbutton.render(newdiv);
-        thisbutton.append("XD");
-    }
-
+function PlusCard({submitHandler}) {
     return (
         <div id="Pluscard">
-            <button onClick={buttonPressed}><img src="plus.jpg" alt="plus sign" height="300"/></button>
+            <form onSubmit={submitHandler}>
+                <input type="text" id="Name"/>
+                <input type="text" id="Address"/>
+                <input type="text" id="ImgLink"/>
+                <input type="text" id="Price"/>
+                <input type="text" id="Description"/>
+                <input type="text" id="Rating"/>
+                <button type="submit">Create Card</button>
+            </form>
         </div>
     )
 }
 
 function NewCardForm() {
     return (
-        <p>PLACEHOLDER TEXT: This is where the form to create a new card will go</p>
+        <div class="test">
+            <p>PLACEHOLDER TEXT: This is where the form to create a new card will go</p>
+        </div>
     )
 }
 

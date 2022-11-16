@@ -5,14 +5,18 @@ const AppBody = (props) => {
     return (
         <div className="App-body">
 
-        <div className="Filters">
+        
+        
+        {
+          /*
+          <div className="Filters">
           <p>Filters</p>
         </div>
 
         <div className="Change-components">
           <a href="#" id="button1">Add/Remove Components</a>
         </div>
-
+        
         <div className="select" id="prices">
           <select name="standard-select" id="price-select">
             <option value="">--Select a price range--</option>
@@ -39,8 +43,11 @@ const AppBody = (props) => {
             <img src="refresh.png" alt="refresh image" id="refresh-pic"></img>
           </a>
         </div>
+
+          */
+        }
         
-        <Cardgrid/>
+        <Cardgrid cardInfo={props.cardInfo}/>
 
       </div>
     )

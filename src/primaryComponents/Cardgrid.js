@@ -21,7 +21,6 @@ function Cardgrid(props) {
       document.getElementById("Rating").value = ""
       props.cardInfo.push([name, address, imgLink, price, description, rating, props.cardInfo.length])
       setNumCards(numCards + 1)
-      alert(props.cardInfo.length)
   }
 
     //<Card name="The Place" address="229 E Broad St, Athens, GA 30608" imgLink="https://images.squarespace-cdn.com/content/v1/60f1a66e2f550d47d6487a3c/1627577291840-GYFM98AA0MU7V9HLCO8B/image-asset.jpeg" price="Low" description="Cool, brick-lined standby offering Southern comfort food, clever cocktails & craft beer on tap." rating="4.6 Stars"/>

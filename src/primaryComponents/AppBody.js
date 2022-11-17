@@ -38,13 +38,15 @@ const AppBody = (props) => {
           </select>
         </div>
 
+        */
+       
         <div className="refresh">
           <a href="#">
             <img src="refresh.png" alt="refresh image" id="refresh-pic"></img>
           </a>
         </div>
 
-          */
+          
         }
         
         <Cardgrid cardInfo={props.cardInfo}/>

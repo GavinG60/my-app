@@ -11,7 +11,7 @@ const DetailedView = (props) => {
             <p>Price: {props.cardInfo[props.DVIndex[0]][3]}</p>
             <p>Rating: {props.cardInfo[props.DVIndex[0]][5]}</p>
             <p>Cuisine: {props.cardInfo[props.DVIndex[0]][8]}</p>
-            <p>Hours: {props.cardInfo[props.DVIndex[0]][8]}</p>
+            <p>Hours: {props.cardInfo[props.DVIndex[0]][9]}</p>
             <a href={props.cardInfo[props.DVIndex[0]][7]} target="_blank">Go to website</a>
         </div>
     )

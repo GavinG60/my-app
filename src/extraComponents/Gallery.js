@@ -24,7 +24,7 @@ function Card(props) {
     function renderEditButton() {
         if (props.isLoggedIn[0]) {
             return (<Link to ="/editcard">
-                <button onClick={setDVIndex}>
+                <button class="removeButton" onClick={setDVIndex}>
                     Edit Card
                 </button>
             </Link>)
@@ -39,7 +39,7 @@ function Card(props) {
         <div className="Card">
             <h1>{props.cardInfo[props.cardIndex][0]}</h1>
             <h2>{props.cardInfo[props.cardIndex][1]}</h2>
-            <img id="cardImage" src={props.cardInfo[props.cardIndex][2]} alt="Restaurant" height="100px"/>
+            <img className="cardImage" src={props.cardInfo[props.cardIndex][2]} alt="Restaurant" height="100px"/>
             <p>Price: {props.cardInfo[props.cardIndex][3]}</p>
             <p>Cuisine: {props.cardInfo[props.cardIndex][8]}</p>
             <p>{props.cardInfo[props.cardIndex][5]}</p>

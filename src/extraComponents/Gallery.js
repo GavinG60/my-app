@@ -39,12 +39,12 @@ function Card(props) {
         <div className="Card">
             <h1>{props.cardInfo[props.cardIndex][0]}</h1>
             <h2>{props.cardInfo[props.cardIndex][1]}</h2>
-            <img src={props.cardInfo[props.cardIndex][2]} alt="Restaurant" height="100px"/>
+            <img id="cardImage" src={props.cardInfo[props.cardIndex][2]} alt="Restaurant" height="100px"/>
             <p>Price: {props.cardInfo[props.cardIndex][3]}</p>
             <p>Cuisine: {props.cardInfo[props.cardIndex][8]}</p>
             <p>{props.cardInfo[props.cardIndex][5]}</p>
             <Link to ="/detailedview">
-                <button onClick={setDVIndex}>
+                <button id="detailViewButton" onClick={setDVIndex}>
                     View More Info
                 </button>
             </Link>

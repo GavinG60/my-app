@@ -16,7 +16,7 @@ const AppHeader = (props) => {
         <>
             <div className="App-header">
                 <h1>Athens Restaurant Finder</h1>
-                <p><Link to="/loginpage">Login/Sign Up</Link></p>
+                <p id="loginLink"><Link to="/loginpage">Login/Sign Up</Link></p>
             </div>
             <Outlet/>
         </>

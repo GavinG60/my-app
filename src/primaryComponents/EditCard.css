@@ -6,3 +6,15 @@ img {
 .editCardDiv {
     text-align: center;
 }
+
+#createButton {
+    background-color: #c83349;
+    border: none;
+    color: black;
+    font-weight: bold;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 12px;
+}

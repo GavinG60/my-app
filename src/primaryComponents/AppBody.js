@@ -49,8 +49,8 @@ const AppBody = (props) => {
           
         }
         
-        <Cardgrid cardInfo={props.cardInfo}/>
-
+        <Cardgrid cardInfo={props.cardInfo} isLoggedIn={props.isLoggedIn} detailedViewIndex={props.detailedViewIndex}/>
+        
       </div>
     )
 };

@@ -55,7 +55,8 @@
     max-width: 175px;
 }
 
-#removeButton {
+
+.removeButton {
     background-color: #e06377;
     border: none;
     color: black;

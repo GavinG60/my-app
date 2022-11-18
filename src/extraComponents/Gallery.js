@@ -16,7 +16,9 @@ function Card(props) {
     function renderRemoveButton() {
         if (props.isLoggedIn[0]) {
             return <button class="removeButton" onClick={removeCard}>Remove card</button>
-        }
+        
+    }
+
     }
 
     function renderEditButton() {

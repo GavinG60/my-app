@@ -1,4 +1,6 @@
-import {PlusCard} from '../extraComponents/Gallery.js';
+import {Card, PlusCard} from '../extraComponents/Gallery.js';
+import {useRef} from 'react';
+//import InputField from './InputField';
 import './Cardgrid.css';
 import {useState} from 'react';
 import {Card} from '../extraComponents/Gallery.js';
@@ -46,14 +48,78 @@ function Cardgrid(props) {
         }
     }
 
+    //<Card name="The Place" address="229 E Broad St, Athens, GA 30608" imgLink="https://images.squarespace-cdn.com/content/v1/60f1a66e2f550d47d6487a3c/1627577291840-GYFM98AA0MU7V9HLCO8B/image-asset.jpeg" price="Low" description="Cool, brick-lined standby offering Southern comfort food, clever cocktails & craft beer on tap." rating="4.6 Stars"/>
+    const inputRef = useRef(null); // collect current form 
+    const [card, setCard] = useState({ 
+        name: "The place", 
+        address: "229 E Broad St, Athens, GA 30608",
+        imgLink: "https://images.squarespace-cdn.com/content/v1/60f1a66e2f550d47d6487a3c/1627577291840-GYFM98AA0MU7V9HLCO8B/image-asset.jpeg",
+        price: "Low",
+        description: "Cool, brick-lined standby offering Southern comfort food, clever cocktails & craft beer on tap.",
+        rating: "4.6 Stars"
+    }); // setup initial state
+
+    function AddChild() { // was addChild : not a component? or something else that it needs to be
+        //const form = inputRef.current
+        
+        // add a new object 
+        this.setState(this.state.concat([{
+            name: `${inputRef['Restaurant'].value}`,  // get values from current form
+            address: `${inputRef['Address'].value}`,
+            imgLink:`${inputRef['ImgLink']}`,
+            price: `${inputRef['Price']}`,
+            description: `${inputRef['Description']}`,
+            rating: ``
+        }])) 
+
+    }
+    // Capitalized to differentiate between state vars and input names
+    // once new data is added to the state, for each item (state) get 
+    // each value to create a New card
+
     return (
         <div>
             <div className="Cardgrid">
                 {cards}
-                {renderPlusCard()}
+                <div id="Pluscard">
+                    <form ref={inputRef} >
+                    <input type="text" name="Restaurant"/> 
+                    <input type="text" name="Address"/>
+                    <input type="text" name="ImgLink"/>
+                    <input type="text" name="Price"/>
+                    <input type="text" name="Description"/>
+                    <input type="text" name="Rating"/>
+                    <button type="submit" onClick={AddChild}>Create Card</button>
+                    </form>
+                </div>
+                {
+                    this.state.map((item) => (
+                        <Card name={item.name} address={item.address} imgLink={item.imgLink} price={item.price} description={item.description} rating={item.rating}/>
+                    ))
+                }
             </div>
         </div>
     )
 }
 
 export default Cardgrid;
+/*
+<div id="Pluscard">
+            <form onSubmit={submitHandler}>
+                <input type="text" id="Name"/>
+                <input type="text" id="Address"/>
+                <input type="text" id="ImgLink"/>
+                <input type="text" id="Price"/>
+                <input type="text" id="Description"/>
+                <input type="text" id="Rating"/>
+                <button type="submit">Create Card</button>
+            </form>
+        </div> */
+/*
+        <h1>{props.name}</h1>
+            <h2>{props.address}</h2>
+            <img src={props.imgLink} alt="Restaurant" height="100px"/>
+            <p>Price: {props.price}</p>
+            <p>{props.description}</p>
+            <p>{props.rating}</p> 
+            */

@@ -1,31 +1,83 @@
 .Card {
-    background-color: gray;
+    background-color: #c83349;
     height: 500px;
-    border: 10px solid lightgray;
+    border: 10px solid black;
 }
 
 .Card h1 {
     font-size: 32px;
     font-weight: bold;
     color: black;
+    text-align: center;
 }
 
 .Card h2 {
     font-size: 23px;
     color: black;
+    text-align: center;
 }
 
 .Card p {
     font-size: 16px;
     color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
 }
 
 #Pluscard {
-    background-color: gray;
+    background-color: #c83349;
     height: 500px;
-    border: 10px solid lightgray;
+    border: 10px solid black;
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
 }
 
 .test {
     background-color: aqua;
+}
+
+#createButton {
+    background-color: #e06377;
+    border: none;
+    color: black;
+    font-weight: bold;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 12px;
+}
+
+#cardImage {
+    margin-left: 28%;
+    width: 100%;
+    max-width: 175px;
+}
+
+
+.removeButton {
+    background-color: #e06377;
+    border: none;
+    color: black;
+    font-weight: bold;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 12px;
+    margin-left: 28%;
+}
+
+#detailViewButton {
+    background-color: #e06377;
+    border: none;
+    color: black;
+    font-weight: bold;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 12px;
+    margin-left: 28%;
 }

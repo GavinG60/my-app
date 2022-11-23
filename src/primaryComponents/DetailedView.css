@@ -1,0 +1,16 @@
+.detailedViewDiv {
+    text-align: center;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+p {
+    font-size: 30px;
+}
+
+a {
+    font-size: 30px;
+    text-decoration: none;
+}

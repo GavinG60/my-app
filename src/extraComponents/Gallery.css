@@ -1,7 +1,8 @@
 .Card {
-    background-color: #c83349;
-    height: 500px;
+    background-color: gray;
+    height: 600px;
     border: 10px solid black;
+    border-radius: 15px;
 }
 
 .Card h1 {
@@ -25,9 +26,10 @@
 }
 
 #Pluscard {
-    background-color: #c83349;
-    height: 500px;
+    background-color: gray;
+    height: 600px;
     border: 10px solid black;
+    border-radius: 15px;
     color: white;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
@@ -49,8 +51,8 @@
     border-radius: 12px;
 }
 
-#cardImage {
-    margin-left: 28%;
+.cardImage {
+    margin-left: 25%;
     width: 100%;
     max-width: 175px;
 }
@@ -67,6 +69,7 @@
     font-size: 16px;
     border-radius: 12px;
     margin-left: 28%;
+    margin-top: 10px;
 }
 
 #detailViewButton {

@@ -28,7 +28,6 @@ function Cardgrid(props) {
       let hours = document.getElementById("Hours").value
       document.getElementById("Hours").value = ""
 
-
       props.cardInfo.push([name, address, imgLink, price, description, rating, props.cardInfo.length, webLink, foodType, hours])
       setNumCards(numCards + 1)
       //alert(props.cardInfo.length)

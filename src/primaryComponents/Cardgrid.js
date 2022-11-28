@@ -2,11 +2,26 @@ import {Card, PlusCard} from '../extraComponents/Gallery.js';
 import {useRef} from 'react';
 //import InputField from './InputField';
 import './Cardgrid.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Card} from '../extraComponents/Gallery.js';
 
 function Cardgrid(props) {
-    const [numCards, setNumCards] = useState(props.cardInfo.length);
+    const [data, setData] = useState(null);
+
+   
+    useEffect(() => {
+        fetch("/restaurants")
+            .then((res) => res.json())
+            .then((data) => setData(data))
+
+    }, [ ])
+
+    function updateCards() {
+        fetch("/restaurants")
+        .then((res) => res.json())
+        .then((data) => setData(data))
+    }
+
     const addCard = (event) => {
       event.preventDefault();
       let name = document.getElementById("Name").value
@@ -28,22 +43,67 @@ function Cardgrid(props) {
       let hours = document.getElementById("Hours").value
       document.getElementById("Hours").value = ""
 
-      props.cardInfo.push([name, address, imgLink, price, description, rating, props.cardInfo.length, webLink, foodType, hours])
-      setNumCards(numCards + 1)
-      //alert(props.cardInfo.length)
-  }
+      const newRestaurantInfo = {
+        name: String(name),
+        address: String(address),
+        imglink: String(imgLink),
+        price: String(price),
+        description: String(description),
+        rating: String(rating),
+        weblink: String(webLink),
+        foodtype: String(foodType),
+        hours: String(hours)
+      }
+      
+       fetch("/restaurants", {
+            method: "POST",
+            headers: {
+                'Content-type': "application/json"
+            },
+            body: JSON.stringify(newRestaurantInfo)
+        })
+        .then()
+
+        fetch("/restaurants")
+            .then((res) => res.json())
+            .then((data) => setData(data))
+
+        /*
+      useEffect(() => {
+        fetch("/restaurants")
+            method: "POST",
+            headers: {
+                'Content-type': "application/json"
+            },
+            body: JSON.stringify(newRestaurantInfo))
+        }, []).then
+
+      })
+      */
+    }
+
+    const removeCard = () => {
+    
+    }
 
     //<Card name="The Place" address="229 E Broad St, Athens, GA 30608" imgLink="https://images.squarespace-cdn.com/content/v1/60f1a66e2f550d47d6487a3c/1627577291840-GYFM98AA0MU7V9HLCO8B/image-asset.jpeg" price="Low" description="Cool, brick-lined standby offering Southern comfort food, clever cocktails & craft beer on tap." rating="4.6 Stars"/>
+    
+    
     let cards = [];
-    for (let i = 0; i < numCards; i++) {
-        cards.push(<Card cardIndex={props.cardInfo[i][6]} cardInfo={props.cardInfo} numCards={numCards} setNumCards={setNumCards} isLoggedIn={props.isLoggedIn} detailedViewIndex={props.detailedViewIndex}/>)
+    if (data) {
+    for (let i = 0; i < data.length; i++) {
+        cards.push(<Card currentRestaurant={props.currentRestaurant} isLoggedIn={props.isLoggedIn} cardData ={data[i]} updateCards={updateCards}/>)
     }
+}
+    
+    
 
     function renderPlusCard() {
         // TO DO: replace true with conditional for logged in: if user is logged in,
         // plus card should be shown
-        if (props.isLoggedIn[0]) {
-            return <PlusCard submitHandler={addCard} isLoggedIn={props.isLoggedIn}/>
+        //props.isLoggedIn[0]
+        if (true) {
+            return <PlusCard submitHandler={addCard} isLoggedIn={props.isLoggedIn} removeHandler={removeCard}/>
         }
     }
 
@@ -79,23 +139,8 @@ function Cardgrid(props) {
     return (
         <div>
             <div className="Cardgrid">
-                {cards}
-                <div id="Pluscard">
-                    <form ref={inputRef} >
-                    <input type="text" name="Restaurant"/> 
-                    <input type="text" name="Address"/>
-                    <input type="text" name="ImgLink"/>
-                    <input type="text" name="Price"/>
-                    <input type="text" name="Description"/>
-                    <input type="text" name="Rating"/>
-                    <button type="submit" onClick={AddChild}>Create Card</button>
-                    </form>
-                </div>
-                {
-                    this.state.map((item) => (
-                        <Card name={item.name} address={item.address} imgLink={item.imgLink} price={item.price} description={item.description} rating={item.rating}/>
-                    ))
-                }
+            {!data ?  "Loading restaurants" : cards}
+                {renderPlusCard()}
             </div>
         </div>
     )

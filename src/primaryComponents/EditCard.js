@@ -1,79 +1,135 @@
 import './EditCard.css';
+import {useState, useEffect} from 'react';
 
 const EditCard = (props) => {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const reqBody = {
+            name: String(props.currentRestaurant[0]),
+        }
+
+        fetch("/details", {
+            method: "POST",
+            headers: {
+                'Content-type': "application/json"
+            },
+            body: JSON.stringify(reqBody)
+        })
+        .then((res) => res.json())
+        .then((data) => setData(data));
+    }, [])
+
+
+    
     const onSubmit = (event) => {
-        event.preventDefault()
         event.preventDefault();
         let name = document.getElementById("Name").value
-        document.getElementById("Name").value = ""
         let address = document.getElementById("Address").value
-        document.getElementById("Address").value = ""
         let imgLink = document.getElementById("ImgLink").value
-        document.getElementById("ImgLink").value = ""
         let price = document.getElementById("Price").value
-        document.getElementById("Price").value = ""
         let description = document.getElementById("Description").value
-        document.getElementById("Description").value = ""
         let rating = document.getElementById("Rating").value
-        document.getElementById("Rating").value = ""
         let webLink = document.getElementById("WebLink").value
-        document.getElementById("WebLink").value = ""
         let foodType = document.getElementById("FoodType").value
-        document.getElementById("FoodType").value = ""
         let hours = document.getElementById("Hours").value
-        document.getElementById("Hours").value = ""
 
-        if (name !== '') props.cardInfo[props.DVIndex[0]][0] = name
-        if (address !== '') props.cardInfo[props.DVIndex[0]][1] = address
-        if (imgLink !== '') props.cardInfo[props.DVIndex[0]][2] = imgLink
-        if (price !== '') props.cardInfo[props.DVIndex[0]][3] = price
-        if (description !== '') props.cardInfo[props.DVIndex[0]][4] = description
-        if (rating !== '') props.cardInfo[props.DVIndex[0]][5] = rating
-        if (webLink !== '') props.cardInfo[props.DVIndex[0]][6] = webLink
-        if (foodType !== '') props.cardInfo[props.DVIndex[0]][7] = foodType
-        if (hours !== '') props.cardInfo[props.DVIndex[0]][8] = hours
+        const editedInfo = {
+            name: String(name),
+            address: String(address),
+            imglink: String(imgLink),
+            price: String(price),
+            description: String(description),
+            rating: String(rating),
+            weblink: String(webLink),
+            foodtype: String(foodType),
+            hours: String(hours)
+          }
+
+          console.log(price)
+
+        fetch("/edit", {
+            method: "POST",
+            headers: {
+                'Content-type': "application/json"
+            },
+            body: JSON.stringify(editedInfo)
+        })        
+        .then()
 
         alert("Changes saved!")
-    } 
+    }
 
-
-    return (
-        <div className="editCardDiv">
+    function renderForm() {
+        if (!data) {
+            return <p>Loading...</p>
+        } else {
+            return (<div className="editCardDiv">
             <h2>Edit Card</h2>
             <form onSubmit={onSubmit}>
             <br></br>
                 <label for="name">Name: </label>
-                <input type="text" id="Name"/><br></br>
+                <input type="text" id="Name" defaultValue={data.name}/><br></br>
                 <br></br>
                 <label for="address">Address: </label>
-                <input type="text" id="Address"/><br></br>
+                <input type="text" id="Address" defaultValue={data.address}/><br></br>
                 <br></br>
                 <label for="imgLink">Image Link: </label>
-                <input type="text" id="ImgLink"/><br></br>
+                <input type="text" id="ImgLink" defaultValue={data.imglink}/><br></br>
                 <br></br>
                 <label for="price">Price: </label>
-                <input type="text" id="Price"/><br></br>
+                <input type="text" id="Price" defaultValue={data.price}/><br></br>
                 <br></br>
                 <label for="description">Description: </label>
-                <input type="text" id="Description"/><br></br>
+                <input type="text" id="Description" defaultValue={data.description}/><br></br>
                 <br></br>
                 <label for="rating">Rating: </label>
-                <input type="text" id="Rating"/><br></br>
+                <input type="text" id="Rating" defaultValue={data.rating}/><br></br>
                 <br></br>
                 <label for="rating">Website Link: </label>
-                <input type="text" id="WebLink"/><br></br>
+                <input type="text" id="WebLink" defaultValue={data.weblink}/><br></br>
                 <br></br>
                 <label for="rating">Food Type: </label>
-                <input type="text" id="FoodType"/><br></br>
+                <input type="text" id="FoodType" defaultValue={data.foodtype}/><br></br>
                 <br></br>
                 <label for="rating">Hours: </label>
-                <input type="text" id="Hours"/><br></br>
+                <input type="text" id="Hours" defaultValue={data.hours}/><br></br>
                 <br></br>
-                <p>Note: Changes will only be saved to non-blank fields.</p>
                 <button id="createButton" type="submit">Submit Changes</button>
             </form>
-        </div>
-    )
+        </div>)
+        }
+    }
+
+    return (<div>{renderForm()}</div>)
 };
 
 export default EditCard;
+
+/*
+<input type="text" id="Name" value={data.name}/><br></br>
+                <br></br>
+                <label for="address">Address: </label>
+                <input type="text" id="Address" value={data.address}/><br></br>
+                <br></br>
+                <label for="imgLink">Image Link: </label>
+                <input type="text" id="ImgLink" value={data.imglink}/><br></br>
+                <br></br>
+                <label for="price">Price: </label>
+                <input type="text" id="Price" value={data.price}/><br></br>
+                <br></br>
+                <label for="description">Description: </label>
+                <input type="text" id="Description" value={data.description}/><br></br>
+                <br></br>
+                <label for="rating">Rating: </label>
+                <input type="text" id="Rating" value={data.rating}/><br></br>
+                <br></br>
+                <label for="rating">Website Link: </label>
+                <input type="text" id="WebLink" value={data.weblink}/><br></br>
+                <br></br>
+                <label for="rating">Food Type: </label>
+                <input type="text" id="FoodType" value={data.foodtype}/><br></br>
+                <br></br>
+                <label for="rating">Hours: </label>
+                <input type="text" id="Hours" value={data.hours}/><br></br>
+*/

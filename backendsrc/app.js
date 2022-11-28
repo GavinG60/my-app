@@ -7,11 +7,6 @@ const Restaurant = require("./models/restaurant");
 app.use(cors());
 app.use(bodyParser.json());
 
-let data = [];
-function setData(newdata) {
-    data = newdata;
-    console.log("xd");
-}
 
 // connect the backend to the mongodb database using the connection URI supplied by mongodb
 // this allows mongoose commands like Restaurant.save() or Restaurant.find() to access the database
@@ -32,9 +27,10 @@ app.use((req, res, next) => {
     next();
 });
 
+
 // THE METHOD BELOW HANDLES RECEIPT OF NEW RESTAURANT INFO AND CREATION OF NEW RESTAURANT DOCUMENT
 // ON THE HOME SCREEN
-app.post('/', (req, res) => {
+app.post('/restaurants', (req, res) => {
     const name = req.body.name;
     const address = req.body.address;
     const imglink = req.body.imglink;
@@ -45,25 +41,60 @@ app.post('/', (req, res) => {
     const foodtype = req.body.foodtype;
     const hours = req.body.hours;
 
-    //const newRestaurant = new Restaurant({name: name, address: address, imglink: imglink, price: price, description: description, rating: rating, weblink: weblink, foodtype: foodtype, hours: hours});
-    const newRestaurant = new Restaurant({name: "XD", address: "XD2", imglink: "XD3", price: "XD4", description: "XD5", rating: "XD6", weblink: "XD7", foodtype: "XD8", hours: "XD9"});
+    const newRestaurant = new Restaurant({name: name, address: address, imglink: imglink, price: price, description: description, rating: rating, weblink: weblink, foodtype: foodtype, hours: hours});
+    //const newRestaurant = new Restaurant({name: name, address: "XD", imglink: "XD", price: "XD", description: "XD", rating: "XD", weblink: "XD", foodtype: "XD", hours: "XD"});
     newRestaurant.save()
         .then(() => res.json("Restaurant added!"))
         .catch(err => res.status(400).json("Error: " + err));
+
+    console.log(hours)
         
 })
 
 // THE METHOD BELOW HANDLES THE INITIAL RETRIEVAL OF ALL THE RESTAURANT ITEMS IN THE DATABASE
-app.get('/', (req, res) => {
+app.get('/restaurants', (req, res) => {
     Restaurant.find()
         .then(restaurants => res.json(restaurants))
-        .then(newdata => setData(newdata))
         .catch(err => res.status(400).json("Err: " + err));
-        console.log(data[0]);
+        console.log("LOLOL")
+        console.log("XD")
 })
 
-app.listen(3000, () => {
-    console.log("Listening on port 3000")
+app.post('/remove', (req, res) => {
+    Restaurant.deleteOne({name: req.body.name})
+        .then()
+        .catch(err => res.status(400).json("Err: " + err))
+        console.log(req.body.name)
+})
+
+app.post('/details', (req, res) => {
+    Restaurant.findOne({name: req.body.name})
+        .then(restaurant => res.json(restaurant))
+        .catch(err => res.status(400).json("Err: " + err));
+        console.log("DETAILS")
+        console.log(req.body.name)
+        console.log()
+})
+
+app.post('/edit', async (req, res) => {
+    const doc = await Restaurant.findOne({name: req.body.name});
+    console.log(doc.name)
+    console.log(req.body.price)
+    doc.name = req.body.name;
+    doc.address = req.body.address;
+    doc.imglink = req.body.imglink;
+    doc.price = req.body.price;
+    doc.description = req.body.description;
+    doc.rating = req.body.rating;
+    doc.weblink = req.body.weblink;
+    doc.foodtype = req.body.foodtype;
+    doc.hours = req.body.hours;
+    await doc.save();
+    console.log("SUCCESS")
+})
+
+app.listen(3001, () => {
+    console.log("Listening on port 3001")
 })
 
 

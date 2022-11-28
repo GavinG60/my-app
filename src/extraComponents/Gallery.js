@@ -4,47 +4,58 @@ import '../primaryComponents/DetailedView'
 import { Link } from "react-router-dom";
 
 function Card(props) {
+    function setCurrentRestaurant() {
+        //props.currentRestaurant[0] = String(props.cardData.name)
+        props.currentRestaurant[0] ="The Place";
+    }
+
     function removeCard() {
-        props.cardInfo.splice(props.cardIndex, 1)
-        for (let i = 0; i < props.cardInfo.length; i++) {
-            props.cardInfo[i][6] = i;
-        }
-        props.setNumCards(props.numCards - 1)
-        //alert(props.cardInfo.length)
-    }
-
-    function renderRemoveButton() {
-        if (props.isLoggedIn[0]) {
-            return <button class="removeButton" onClick={removeCard}>Remove card</button>
+        const reqBody = {
+            name: String(props.cardData.name),
+          }
         
-    }
+        fetch("/remove", {
+            method: "POST",
+            headers: {
+                'Content-type': "application/json"
+            },
+            body: JSON.stringify(reqBody)
+        })
+        .then()
 
+        props.updateCards()
+    }
+    
+    function renderRemoveButton() {
+        // props.isLoggedIn[0]
+        if (true) {
+            return <button class="removeButton" onClick={removeCard}>Remove card</button>
+        }
     }
 
     function renderEditButton() {
-        if (props.isLoggedIn[0]) {
+        // props.isLoggedIn[0]
+        if (true) {
             return (<Link to ="/editcard">
-                <button class="removeButton" onClick={setDVIndex}>
+                <button class="removeButton" onClick={setCurrentRestaurant}>
                     Edit Card
                 </button>
             </Link>)
         }
     }
 
-    function setDVIndex() {
-        props.detailedViewIndex[0] = props.cardIndex
-    }
+    
     
     return (
         <div className="Card">
-            <h1>{props.cardInfo[props.cardIndex][0]}</h1>
-            <h2>{props.cardInfo[props.cardIndex][1]}</h2>
-            <img className="cardImage" src={props.cardInfo[props.cardIndex][2]} alt="Restaurant" height="100px"/>
-            <p>Price: {props.cardInfo[props.cardIndex][3]}</p>
-            <p>Cuisine: {props.cardInfo[props.cardIndex][8]}</p>
-            <p>{props.cardInfo[props.cardIndex][5]}</p>
+            <h1>{props.cardData.name}</h1>
+            <h2>{props.cardData.address}</h2>
+            <img className="cardImage" src={props.cardData.imglink} alt="Restaurant" height="100px"/>
+            <p>Price: {props.cardData.price}</p>
+            <p>Cuisine: {props.cardData.foodtype}</p>
+            <p>{props.cardData.rating}</p>
             <Link to ="/detailedview">
-                <button id="detailViewButton" onClick={setDVIndex}>
+                <button id="detailViewButton" onClick={setCurrentRestaurant}>
                     View More Info
                 </button>
             </Link>

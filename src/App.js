@@ -47,6 +47,27 @@ function App() {
     validUsers.push(newUser)
   }
 
+  // Fetch Requests
+  useEffect(() => {
+    const info = {
+        name: "First Last",
+        age: 100,
+    } // info
+
+    // Need to set proxy in package.json to proxy backend for /exampleroute
+    fetch("/exampleroute", {
+        method:"POST",
+        headers: {
+            "Content-type": "application/json",
+            "x-access-token": localStorage.getItem("token")   
+        }, 
+        body: JSON.stringify(info)
+    }) // fetch
+    // Get data from the backend
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }) // useEffect
+
   return (
     <BrowserRouter>
       <Routes>

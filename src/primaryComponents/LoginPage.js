@@ -1,6 +1,7 @@
 import React from 'react';
 import './LoginPage.css';
-import {useState} from 'react';
+import { useState } from 'react';
+
 
 function LoginPage(props) {
     // state and functions for login/logout
@@ -101,5 +102,6 @@ function LoginPage(props) {
             
     }
 }
+
 
 export default LoginPage;

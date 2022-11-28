@@ -6,6 +6,10 @@ const mongoose = require('mongoose');
 const Restaurant = require("./models/restaurant");
 app.use(cors());
 app.use(bodyParser.json());
+const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt")
+const User = require("./models/users")
+const { appendFile } = require("fs")
 
 
 // connect the backend to the mongodb database using the connection URI supplied by mongodb
